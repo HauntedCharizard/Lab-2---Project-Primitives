@@ -4,7 +4,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 {
     private float speed = 8.0f;
     private Rigidbody playerRb;
-
+    private float zBound = 18;
+    private float xBound = 12;
 
 
 
@@ -24,5 +25,24 @@ public class NewMonoBehaviourScript : MonoBehaviour
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
 
 
+        // Z Boundaries
+        if (transform.position.z < -zBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -zBound);
+        }
+        if (transform.position.z > zBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zBound);
+        }
+
+        // X boundaries
+        if (transform.position.x < -xBound) {
+            transform.position = new Vector3(-xBound, transform.position.y, transform.position.z);
+        }
+        
+        if (transform.position.x > xBound) {
+            transform.position = new Vector3(xBound, transform.position.y, transform.position.z);
+
+        }
     }
 }
